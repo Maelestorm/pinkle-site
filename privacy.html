@@ -4,11 +4,57 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Privacy Policy — Pinkle</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,240,245,0.90);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid #FFD6E8;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 32px;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .nav-brand img { width: 36px; height: 36px; border-radius: 10px; }
+
+    .nav-brand span {
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 800;
+      font-size: 20px;
+      color: #C0256F;
+    }
+
+    .nav-back {
+      text-decoration: none;
+      color: #9B9BAD;
+      font-size: 14px;
+      font-weight: 600;
+      font-family: 'Nunito', sans-serif;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .nav-back:hover { color: #E84D8A; }
+
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       background: #FFF0F5;
       color: #2D2D3A;
       line-height: 1.7;
@@ -22,9 +68,9 @@
       color: white;
     }
 
-    .logo { display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 28px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 4px; }
+    .logo { display: flex; align-items: center; justify-content: center; gap: 10px; font-family: 'Quicksand', sans-serif; font-size: 28px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 4px; }
     .logo img { width: 40px; height: 40px; border-radius: 10px; }
-    .logo span { opacity: 0.85; font-weight: 400; font-size: 15px; display: block; margin-top: 2px; }
+    .logo span { opacity: 0.85; font-weight: 400; font-size: 15px; font-family: 'Nunito', sans-serif; display: block; margin-top: 2px; }
 
     main {
       max-width: 740px;
@@ -125,6 +171,14 @@
   </style>
 </head>
 <body>
+
+<nav>
+  <a class="nav-brand" href="/">
+    <img src="logo.png" alt="Pinkle">
+    <span>Pinkle</span>
+  </a>
+  <a class="nav-back" href="/">← Back to home</a>
+</nav>
 
 <header>
   <div class="logo"><img src="logo.png" alt="Pinkle">Pinkle<span>Your cycle, your fortune, your Pinkle.</span></div>
