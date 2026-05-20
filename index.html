@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pinkle — Your cycle, your fortune, your Pinkle.</title>
+  <meta name="description" content="Pinkle is a playful period tracker with daily horoscopes, fortune cookies, moon phase sync, and AI-powered insights. Available on iOS and Android.">
+  <meta property="og:title" content="Pinkle — Period Tracker & Fortune">
+  <meta property="og:description" content="Track your cycle, crack a fortune cookie, and discover what the stars have in store.">
+  <meta property="og:image" content="https://pinkleapp.com/logo.png">
+  <meta property="og:url" content="https://pinkleapp.com">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --pink50:  #FFF0F5;
+      --pink100: #FFD6E8;
+      --pink300: #FF8FB1;
+      --pink500: #E84D8A;
+      --pink700: #C0256F;
+      --charcoal: #2D2D3A;
+      --softGray: #9B9BAD;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--pink50);
+      color: var(--charcoal);
+      line-height: 1.6;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      background: linear-gradient(150deg, #FF6B9D 0%, #C0256F 60%, #8C1050 100%);
+      color: white;
+      text-align: center;
+      padding: 80px 24px 100px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 70% 20%, rgba(255,255,255,0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero-logo {
+      width: 96px;
+      height: 96px;
+      border-radius: 24px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+      margin: 0 auto 24px;
+      display: block;
+    }
+
+    .hero h1 {
+      font-size: clamp(36px, 6vw, 56px);
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+    }
+
+    .hero p {
+      font-size: clamp(16px, 2.5vw, 20px);
+      opacity: 0.88;
+      max-width: 480px;
+      margin: 0 auto 40px;
+    }
+
+    .badge-row {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .store-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: white;
+      color: var(--charcoal);
+      text-decoration: none;
+      padding: 14px 24px;
+      border-radius: 14px;
+      font-weight: 700;
+      font-size: 15px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+
+    .store-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+
+    .store-btn .icon { font-size: 22px; }
+    .store-btn .label { line-height: 1.2; }
+    .store-btn .label small { display: block; font-weight: 400; font-size: 11px; color: var(--softGray); }
+
+    /* ── Features ── */
+    .section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 72px 24px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: clamp(22px, 4vw, 32px);
+      font-weight: 800;
+      color: var(--charcoal);
+      margin-bottom: 8px;
+    }
+
+    .section-sub {
+      text-align: center;
+      color: var(--softGray);
+      font-size: 16px;
+      margin-bottom: 48px;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .feature-card {
+      background: white;
+      border: 1px solid var(--pink100);
+      border-radius: 20px;
+      padding: 28px 24px;
+      box-shadow: 0 2px 12px rgba(255,107,157,0.08);
+    }
+
+    .feature-card .emoji { font-size: 36px; margin-bottom: 14px; display: block; }
+    .feature-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 6px; }
+    .feature-card p { font-size: 14px; color: var(--softGray); line-height: 1.55; }
+
+    /* ── Tagline band ── */
+    .band {
+      background: linear-gradient(135deg, #FF6B9D 0%, #C0256F 100%);
+      color: white;
+      text-align: center;
+      padding: 56px 24px;
+    }
+
+    .band h2 {
+      font-size: clamp(22px, 4vw, 36px);
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .band p { opacity: 0.85; font-size: 16px; margin-bottom: 32px; }
+
+    .band .store-btn { background: white; color: var(--charcoal); }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 28px 24px;
+      font-size: 13px;
+      color: var(--softGray);
+      border-top: 1px solid var(--pink100);
+    }
+
+    footer a { color: var(--pink500); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 500px) {
+      .hero { padding: 60px 20px 80px; }
+      .store-btn { padding: 12px 18px; font-size: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Hero -->
+<section class="hero">
+  <img src="logo.png" alt="Pinkle logo" class="hero-logo">
+  <h1>Pinkle</h1>
+  <p>Your cycle, your fortune, your Pinkle. Track periods, crack fortune cookies, and discover cosmic insights.</p>
+  <div class="badge-row">
+    <a href="#" class="store-btn">
+      <span class="icon">🍎</span>
+      <span class="label"><small>Download on the</small>App Store</span>
+    </a>
+    <a href="#" class="store-btn">
+      <span class="icon">▶</span>
+      <span class="label"><small>Get it on</small>Google Play</span>
+    </a>
+  </div>
+</section>
+
+<!-- Features -->
+<section class="section">
+  <h2 class="section-title">Everything your cycle deserves</h2>
+  <p class="section-sub">Powerful tracking wrapped in a playful, judgment-free experience.</p>
+  <div class="features">
+    <div class="feature-card">
+      <span class="emoji">🌸</span>
+      <h3>Cycle Tracking</h3>
+      <p>Log your period, mood, flow, and symptoms. Predictions get smarter with every cycle.</p>
+    </div>
+    <div class="feature-card">
+      <span class="emoji">🥠</span>
+      <h3>Fortune Cookies</h3>
+      <p>Crack a daily fortune cookie and build your streak. Six tiers from Regular to Legendary.</p>
+    </div>
+    <div class="feature-card">
+      <span class="emoji">✨</span>
+      <h3>AI Fortune</h3>
+      <p>Get a personalised fortune generated by AI — tailored to your zodiac, cycle phase, and mood.</p>
+    </div>
+    <div class="feature-card">
+      <span class="emoji">♈</span>
+      <h3>Daily Horoscope</h3>
+      <p>Cycle × astrology fusion. Your star sign meets your cycle phase for 48 unique daily readings.</p>
+    </div>
+    <div class="feature-card">
+      <span class="emoji">🌙</span>
+      <h3>Moon Phase Sync</h3>
+      <p>Track the lunar cycle alongside yours. White Moon and Red Moon sync detection included.</p>
+    </div>
+    <div class="feature-card">
+      <span class="emoji">🎁</span>
+      <h3>Cycle Wrap</h3>
+      <p>A Spotify Wrapped-style monthly story of your cycle — moods, streaks, and your personality type.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA band -->
+<section class="band">
+  <h2>Ready to meet your cycle's best friend?</h2>
+  <p>Free to download. No clinical jargon. Just you and your Pinkle.</p>
+  <div class="badge-row">
+    <a href="#" class="store-btn">
+      <span class="icon">🍎</span>
+      <span class="label"><small>Download on the</small>App Store</span>
+    </a>
+    <a href="#" class="store-btn">
+      <span class="icon">▶</span>
+      <span class="label"><small>Get it on</small>Google Play</span>
+    </a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  &copy; 2026 Pinkle &nbsp;·&nbsp;
+  <a href="/privacy">Privacy Policy</a> &nbsp;·&nbsp;
+  <a href="mailto:support@pinkleapp.com">support@pinkleapp.com</a>
+</footer>
+
+</body>
+</html>
