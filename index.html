@@ -9,6 +9,9 @@
   <meta property="og:description" content="Track your cycle, crack a fortune cookie, and discover what the stars have in store.">
   <meta property="og:image" content="https://pinkleapp.com/logo.png">
   <meta property="og:url" content="https://pinkleapp.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -20,111 +23,333 @@
       --pink700: #C0256F;
       --charcoal: #2D2D3A;
       --softGray: #9B9BAD;
+      --lavender: #E8DAEF;
+      --gold: #F5C842;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-family: 'Nunito', -apple-system, sans-serif;
       background: var(--pink50);
       color: var(--charcoal);
       line-height: 1.6;
     }
 
+    /* ── Nav ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,240,245,0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--pink100);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 32px;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--charcoal);
+    }
+
+    .nav-brand img {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+    }
+
+    .nav-brand span {
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 800;
+      font-size: 20px;
+      color: var(--pink700);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--softGray);
+      font-size: 14px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 20px;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .nav-links a:hover { background: var(--pink100); color: var(--pink700); }
+
+    .nav-cta {
+      background: var(--pink500) !important;
+      color: white !important;
+    }
+
+    .nav-cta:hover { background: var(--pink700) !important; }
+
     /* ── Hero ── */
     .hero {
-      background: linear-gradient(150deg, #FF6B9D 0%, #C0256F 60%, #8C1050 100%);
       color: white;
-      text-align: center;
-      padding: 80px 24px 100px;
+      padding: 80px 24px 0;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 40px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .hero-wrapper {
+      background: linear-gradient(150deg, #FF6B9D 0%, #C0256F 60%, #8C1050 100%);
       position: relative;
       overflow: hidden;
     }
 
-    .hero::before {
+    .hero-wrapper::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse at 70% 20%, rgba(255,255,255,0.08) 0%, transparent 60%);
+      background: radial-gradient(ellipse at 15% 80%, rgba(255,255,255,0.07) 0%, transparent 45%);
       pointer-events: none;
     }
 
-    .hero-logo {
-      width: 96px;
-      height: 96px;
-      border-radius: 24px;
-      box-shadow: 0 12px 40px rgba(0,0,0,0.25);
-      margin: 0 auto 24px;
-      display: block;
+    .hero-orb {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      background: rgba(255,255,255,0.045);
+    }
+
+    .hero-orb-1 { width: 520px; height: 520px; top: -180px; right: -120px; }
+    .hero-orb-2 { width: 380px; height: 380px; bottom: -120px; left: -100px; }
+    .hero-orb-3 { width: 140px; height: 140px; top: 50px; left: 6%; }
+
+    .hero-text { padding-bottom: 80px; }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      margin-bottom: 20px;
     }
 
     .hero h1 {
-      font-size: clamp(36px, 6vw, 56px);
+      font-family: 'Quicksand', sans-serif;
+      font-size: clamp(34px, 5vw, 56px);
       font-weight: 800;
       letter-spacing: -1px;
-      margin-bottom: 12px;
+      line-height: 1.1;
+      margin-bottom: 16px;
     }
 
     .hero p {
-      font-size: clamp(16px, 2.5vw, 20px);
+      font-size: clamp(15px, 2vw, 18px);
       opacity: 0.88;
-      max-width: 480px;
-      margin: 0 auto 40px;
+      max-width: 420px;
+      margin-bottom: 36px;
     }
 
     .badge-row {
       display: flex;
       gap: 12px;
-      justify-content: center;
       flex-wrap: wrap;
+      align-items: center;
     }
 
-    .store-btn {
-      display: inline-flex;
+    .badge-link {
+      display: inline-block;
+      transition: transform 0.15s, opacity 0.15s;
+      line-height: 0;
+    }
+
+    .badge-link:hover { transform: translateY(-2px); opacity: 0.88; }
+    .badge-link img { height: 50px; width: auto; display: block; border-radius: 10px; }
+    /* Google Play badge has internal padding — offset it */
+    .badge-link .gplay { height: 74px; margin: -12px 0; }
+
+    /* ── Phone mockup ── */
+    .hero-phone {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      padding-bottom: 0;
+    }
+
+    .phone-frame {
+      width: 240px;
+      height: 480px;
+      background: #1A0A14;
+      border-radius: 44px;
+      border: 8px solid rgba(255,255,255,0.20);
+      box-shadow:
+        0 40px 80px rgba(0,0,0,0.5),
+        inset 0 1px 0 rgba(255,255,255,0.15);
+      position: relative;
+      overflow: hidden;
+      transform: translateY(32px);
+    }
+
+    .phone-notch {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 22px;
+      background: #1A0A14;
+      border-radius: 0 0 14px 14px;
+      z-index: 10;
+    }
+
+    .phone-screen {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, #FFF0F5 0%, #FFD6E8 100%);
+      display: flex;
+      flex-direction: column;
+      padding: 36px 14px 16px;
+      gap: 8px;
+    }
+
+    .ps-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 4px;
+    }
+
+    .ps-title {
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 800;
+      font-size: 14px;
+      color: var(--pink700);
+    }
+
+    .ps-date { font-size: 9px; color: var(--softGray); font-weight: 600; }
+
+    .ps-card {
+      background: white;
+      border-radius: 14px;
+      padding: 10px 12px;
+      border: 1px solid var(--pink100);
+      box-shadow: 0 2px 8px rgba(255,107,157,0.08);
+    }
+
+    .ps-card-title { font-size: 8px; font-weight: 700; color: var(--softGray); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+    .ps-card-value { font-size: 13px; font-weight: 800; color: var(--charcoal); font-family: 'Quicksand', sans-serif; }
+    .ps-card-sub { font-size: 8px; color: var(--softGray); margin-top: 2px; }
+
+    .ps-ring-card {
+      background: white;
+      border-radius: 14px;
+      padding: 10px 12px;
+      border: 1px solid var(--pink100);
+      display: flex;
       align-items: center;
       gap: 10px;
-      background: white;
-      color: var(--charcoal);
-      text-decoration: none;
-      padding: 14px 24px;
-      border-radius: 14px;
-      font-weight: 700;
-      font-size: 15px;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
-      transition: transform 0.15s, box-shadow 0.15s;
     }
 
-    .store-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+    .ps-ring {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: conic-gradient(var(--pink500) 0deg 200deg, var(--pink100) 200deg 360deg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
 
-    .store-btn .icon { font-size: 22px; }
-    .store-btn .label { line-height: 1.2; }
-    .store-btn .label small { display: block; font-weight: 400; font-size: 11px; color: var(--softGray); }
+    .ps-ring-inner {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--pink700);
+      font-family: 'Quicksand', sans-serif;
+    }
 
-    /* ── Features ── */
+    .ps-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      background: var(--lavender);
+      border-radius: 6px;
+      padding: 2px 6px;
+      font-size: 7px;
+      font-weight: 700;
+      color: #6B3F9E;
+      margin-top: 4px;
+    }
+
+    .ps-bottom-row {
+      display: flex;
+      gap: 6px;
+      margin-top: auto;
+    }
+
+    .ps-nav-item {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+    }
+
+    .ps-nav-icon { font-size: 14px; }
+    .ps-nav-label { font-size: 6px; color: var(--softGray); font-weight: 600; }
+    .ps-nav-icon.active + .ps-nav-label { color: var(--pink500); }
+
+    /* ── Section ── */
     .section {
-      max-width: 900px;
+      max-width: 960px;
       margin: 0 auto;
-      padding: 72px 24px;
+      padding: 80px 24px;
     }
 
     .section-title {
       text-align: center;
-      font-size: clamp(22px, 4vw, 32px);
+      font-family: 'Quicksand', sans-serif;
+      font-size: clamp(22px, 4vw, 34px);
       font-weight: 800;
       color: var(--charcoal);
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
     .section-sub {
       text-align: center;
       color: var(--softGray);
       font-size: 16px;
-      margin-bottom: 48px;
+      margin-bottom: 52px;
     }
 
+    /* ── Features ── */
     .features {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 20px;
     }
 
@@ -133,29 +358,136 @@
       border: 1px solid var(--pink100);
       border-radius: 20px;
       padding: 28px 24px;
-      box-shadow: 0 2px 12px rgba(255,107,157,0.08);
+      box-shadow: 0 2px 12px rgba(255,107,157,0.07);
+      transition: transform 0.2s, box-shadow 0.2s;
     }
 
-    .feature-card .emoji { font-size: 36px; margin-bottom: 14px; display: block; }
-    .feature-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 6px; }
-    .feature-card p { font-size: 14px; color: var(--softGray); line-height: 1.55; }
+    .feature-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(255,107,157,0.14); }
 
-    /* ── Tagline band ── */
+    .feature-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      margin-bottom: 16px;
+    }
+
+    .icon-pink    { background: linear-gradient(135deg, #FFD6E8, #FF8FB1); }
+    .icon-gold    { background: linear-gradient(135deg, #FFF0C0, #F5C842); }
+    .icon-lavend  { background: linear-gradient(135deg, #E8DAEF, #C59FE8); }
+    .icon-mint    { background: linear-gradient(135deg, #C8F0E8, #6EDBC0); }
+    .icon-peach   { background: linear-gradient(135deg, #FFDAB9, #FFB07A); }
+    .icon-blue    { background: linear-gradient(135deg, #D6E8FF, #7AAEFF); }
+
+    .feature-card h3 {
+      font-family: 'Quicksand', sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--charcoal);
+    }
+
+    .feature-card p { font-size: 14px; color: var(--softGray); line-height: 1.6; }
+
+    /* ── Stats strip ── */
+    .stats-strip {
+      background: white;
+      border-top: 1px solid var(--pink100);
+      border-bottom: 1px solid var(--pink100);
+      padding: 40px 24px;
+    }
+
+    .stats-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 32px;
+    }
+
+    .stat-item { text-align: center; }
+
+    .stat-value {
+      font-family: 'Quicksand', sans-serif;
+      font-size: 40px;
+      font-weight: 800;
+      color: var(--pink500);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .stat-label { font-size: 13px; color: var(--softGray); font-weight: 600; }
+
+    /* ── Fortune band ── */
+    .fortune-band {
+      background: linear-gradient(135deg, var(--lavender) 0%, #E8DAEF 100%);
+      padding: 72px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .fortune-band::before {
+      content: '🥠';
+      position: absolute;
+      font-size: 200px;
+      opacity: 0.06;
+      top: -30px;
+      right: -20px;
+      line-height: 1;
+    }
+
+    .fortune-band h2 {
+      font-family: 'Quicksand', sans-serif;
+      font-size: clamp(22px, 4vw, 34px);
+      font-weight: 800;
+      color: #4A235A;
+      margin-bottom: 10px;
+    }
+
+    .fortune-band p {
+      color: #6B3F9E;
+      font-size: 16px;
+      max-width: 500px;
+      margin: 0 auto 36px;
+      opacity: 0.85;
+    }
+
+    .fortune-quote {
+      display: inline-block;
+      background: white;
+      border: 1px solid #D4B8E8;
+      border-radius: 16px;
+      padding: 20px 32px;
+      font-style: italic;
+      font-size: 18px;
+      color: #4A235A;
+      max-width: 520px;
+      box-shadow: 0 4px 20px rgba(100,60,150,0.10);
+      margin-bottom: 32px;
+    }
+
+    /* ── CTA band ── */
     .band {
       background: linear-gradient(135deg, #FF6B9D 0%, #C0256F 100%);
       color: white;
       text-align: center;
-      padding: 56px 24px;
+      padding: 80px 24px;
     }
 
     .band h2 {
-      font-size: clamp(22px, 4vw, 36px);
+      font-family: 'Quicksand', sans-serif;
+      font-size: clamp(22px, 4vw, 40px);
       font-weight: 800;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
 
-    .band p { opacity: 0.85; font-size: 16px; margin-bottom: 32px; }
-
+    .band p { opacity: 0.85; font-size: 17px; margin-bottom: 36px; }
+    .band .badge-row { justify-content: center; }
     .band .store-btn { background: white; color: var(--charcoal); }
 
     /* ── Footer ── */
@@ -165,71 +497,191 @@
       font-size: 13px;
       color: var(--softGray);
       border-top: 1px solid var(--pink100);
+      background: white;
     }
 
     footer a { color: var(--pink500); text-decoration: none; }
     footer a:hover { text-decoration: underline; }
 
+    /* ── Animations ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-up { animation: fadeUp 0.6s ease both; }
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.35s; }
+
+    /* ── Responsive ── */
+    @media (max-width: 720px) {
+      .hero { grid-template-columns: 1fr; padding-bottom: 0; }
+      .hero-phone { display: none; }
+      .hero-text { padding-bottom: 72px; }
+      nav { padding: 12px 20px; }
+      .nav-links a:not(.nav-cta) { display: none; }
+    }
+
     @media (max-width: 500px) {
-      .hero { padding: 60px 20px 80px; }
-      .store-btn { padding: 12px 18px; font-size: 14px; }
+      .store-btn { padding: 11px 16px; font-size: 13px; }
     }
   </style>
 </head>
 <body>
 
-<!-- Hero -->
-<section class="hero">
-  <img src="logo.png" alt="Pinkle logo" class="hero-logo">
-  <h1>Pinkle</h1>
-  <p>Your cycle, your fortune, your Pinkle. Track periods, crack fortune cookies, and discover cosmic insights.</p>
-  <div class="badge-row">
-    <a href="#" class="store-btn">
-      <span class="icon">🍎</span>
-      <span class="label"><small>Download on the</small>App Store</span>
-    </a>
-    <a href="#" class="store-btn">
-      <span class="icon">▶</span>
-      <span class="label"><small>Get it on</small>Google Play</span>
-    </a>
+<!-- Nav -->
+<nav>
+  <a class="nav-brand" href="/">
+    <img src="logo.png" alt="Pinkle">
+    <span>Pinkle</span>
+  </a>
+  <div class="nav-links">
+    <a href="#features">Features</a>
+    <a href="#fortune">Fortune</a>
+    <a href="/privacy">Privacy</a>
+    <a href="#download" class="nav-cta">Get the app</a>
   </div>
-</section>
+</nav>
+
+<!-- Hero -->
+<div class="hero-wrapper">
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+  <div class="hero-orb hero-orb-3"></div>
+  <div class="hero">
+    <div class="hero-text fade-up">
+      <div class="hero-eyebrow">🌸 Period tracking, reimagined</div>
+      <h1>Your cycle,<br>your fortune,<br>your Pinkle.</h1>
+      <p>Track your period, crack daily fortune cookies, discover your horoscope, and sync with the moon — all in one playful app.</p>
+      <div class="badge-row" id="download">
+        <a href="#" class="badge-link">
+          <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83" alt="Download on the App Store">
+        </a>
+        <a href="#" class="badge-link">
+          <img class="gplay" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play">
+        </a>
+      </div>
+    </div>
+    <div class="hero-phone fade-up delay-2">
+      <div class="phone-frame">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div class="ps-header">
+            <div class="ps-title">Pinkle</div>
+            <div class="ps-date">Today · May 20</div>
+          </div>
+          <div class="ps-ring-card">
+            <div class="ps-ring">
+              <div class="ps-ring-inner">D14</div>
+            </div>
+            <div>
+              <div style="font-size:10px;font-weight:700;color:#2D2D3A;">Cycle Day 14</div>
+              <div class="ps-chip">✨ Ovulation</div>
+              <div style="font-size:8px;color:#9B9BAD;margin-top:3px;">Next period in 14 days</div>
+            </div>
+          </div>
+          <div class="ps-card">
+            <div class="ps-card-title">Today's Fortune 🥠</div>
+            <div class="ps-card-value" style="font-size:11px;font-style:italic;color:#C0256F;">"Your energy draws people in today."</div>
+            <div class="ps-chip" style="margin-top:6px;">🔥 7-day streak</div>
+          </div>
+          <div class="ps-card">
+            <div class="ps-card-title">♈ Aries · Daily Horoscope</div>
+            <div class="ps-card-value" style="font-size:9px;font-weight:600;color:#2D2D3A;line-height:1.4;">Bold moves pay off. Your cycle amplifies your natural fire today.</div>
+          </div>
+          <div class="ps-card" style="background:linear-gradient(135deg,#1A1A2E,#25253E);border-color:#32325A;">
+            <div class="ps-card-title" style="color:#9B9BAD;">🌙 Moon Phase</div>
+            <div class="ps-card-value" style="color:white;">Full Moon · 98%</div>
+            <div class="ps-card-sub" style="color:#9B9BAD;">Peak energy — white moon sync</div>
+          </div>
+          <div class="ps-bottom-row">
+            <div class="ps-nav-item"><span class="ps-nav-icon active">🏠</span><span class="ps-nav-label" style="color:#E84D8A;">Home</span></div>
+            <div class="ps-nav-item"><span class="ps-nav-icon">📅</span><span class="ps-nav-label">Calendar</span></div>
+            <div class="ps-nav-item"><span class="ps-nav-icon">🥠</span><span class="ps-nav-label">Fortune</span></div>
+            <div class="ps-nav-item"><span class="ps-nav-icon">📊</span><span class="ps-nav-label">Stats</span></div>
+            <div class="ps-nav-item"><span class="ps-nav-icon">👤</span><span class="ps-nav-label">Profile</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Stats strip -->
+<div class="stats-strip">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <div class="stat-value">48</div>
+      <div class="stat-label">Unique daily readings</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value">6</div>
+      <div class="stat-label">Fortune streak tiers</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value">8</div>
+      <div class="stat-label">Moon phases tracked</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value">100%</div>
+      <div class="stat-label">Offline-first tracking</div>
+    </div>
+  </div>
+</div>
 
 <!-- Features -->
-<section class="section">
+<section class="section" id="features">
   <h2 class="section-title">Everything your cycle deserves</h2>
   <p class="section-sub">Powerful tracking wrapped in a playful, judgment-free experience.</p>
   <div class="features">
     <div class="feature-card">
-      <span class="emoji">🌸</span>
+      <div class="feature-icon icon-pink">🌸</div>
       <h3>Cycle Tracking</h3>
-      <p>Log your period, mood, flow, and symptoms. Predictions get smarter with every cycle.</p>
+      <p>Log your period, mood, flow, and symptoms. Predictions get smarter with every cycle — and work fully offline.</p>
     </div>
     <div class="feature-card">
-      <span class="emoji">🥠</span>
+      <div class="feature-icon icon-gold">🥠</div>
       <h3>Fortune Cookies</h3>
-      <p>Crack a daily fortune cookie and build your streak. Six tiers from Regular to Legendary.</p>
+      <p>Crack a daily fortune cookie and build your streak. Six tiers from Regular to Legendary — can you go Rainbow?</p>
     </div>
     <div class="feature-card">
-      <span class="emoji">✨</span>
+      <div class="feature-icon icon-lavend">✨</div>
       <h3>AI Fortune</h3>
-      <p>Get a personalised fortune generated by AI — tailored to your zodiac, cycle phase, and mood.</p>
+      <p>Get a personalised fortune from Claude AI — tailored to your zodiac sign, cycle phase, and today's mood.</p>
     </div>
     <div class="feature-card">
-      <span class="emoji">♈</span>
-      <h3>Daily Horoscope</h3>
-      <p>Cycle × astrology fusion. Your star sign meets your cycle phase for 48 unique daily readings.</p>
+      <div class="feature-icon icon-peach">♈</div>
+      <h3>Cycle × Horoscope</h3>
+      <p>Your star sign meets your cycle phase — 48 unique daily fusion readings that evolve throughout your cycle.</p>
     </div>
     <div class="feature-card">
-      <span class="emoji">🌙</span>
+      <div class="feature-icon icon-blue">🌙</div>
       <h3>Moon Phase Sync</h3>
-      <p>Track the lunar cycle alongside yours. White Moon and Red Moon sync detection included.</p>
+      <p>Track the lunar cycle alongside yours. White Moon and Red Moon sync detection — see how the cosmos align.</p>
     </div>
     <div class="feature-card">
-      <span class="emoji">🎁</span>
+      <div class="feature-icon icon-mint">🎁</div>
       <h3>Cycle Wrap</h3>
-      <p>A Spotify Wrapped-style monthly story of your cycle — moods, streaks, and your personality type.</p>
+      <p>A Spotify Wrapped-style monthly story of your cycle — discover your personality type, top moods, and streaks.</p>
     </div>
+  </div>
+</section>
+
+<!-- Fortune band -->
+<section class="fortune-band" id="fortune">
+  <h2>Your daily fortune awaits 🥠</h2>
+  <p>A new fortune cookie to crack every day. Build your streak and unlock legendary tier rewards.</p>
+  <div class="fortune-quote">
+    "Your energy draws people in today. Let the universe guide your next step."
+  </div>
+  <div class="badge-row" style="justify-content:center;">
+    <a href="#" class="badge-link">
+      <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83" alt="Download on the App Store">
+    </a>
+    <a href="#" class="badge-link">
+      <img class="gplay" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play">
+    </a>
   </div>
 </section>
 
