@@ -182,8 +182,9 @@
 
     .badge-link:hover { transform: translateY(-2px); opacity: 0.88; }
     .badge-link img { height: 50px; width: auto; display: block; border-radius: 10px; }
-    /* Google Play badge has internal padding — offset it */
-    .badge-link .gplay { height: 74px; margin: -12px 0; }
+    /* Google Play badge has extra transparent padding — crop via wrapper overflow */
+    .badge-link-gplay { height: 50px; overflow: hidden; display: inline-flex; align-items: center; }
+    .badge-link-gplay .gplay { height: 74px; width: auto; display: block; }
 
     /* ── Phone mockup ── */
     .hero-phone {
@@ -558,7 +559,7 @@
         <a href="#" class="badge-link">
           <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83" alt="Download on the App Store">
         </a>
-        <a href="#" class="badge-link">
+        <a href="#" class="badge-link badge-link-gplay">
           <img class="gplay" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play">
         </a>
       </div>
@@ -679,7 +680,7 @@
     <a href="#" class="badge-link">
       <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83" alt="Download on the App Store">
     </a>
-    <a href="#" class="badge-link">
+    <a href="#" class="badge-link badge-link-gplay">
       <img class="gplay" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play">
     </a>
   </div>
